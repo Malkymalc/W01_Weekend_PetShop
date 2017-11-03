@@ -65,10 +65,7 @@ end
 
 def sell_pet_to_customer(petshop, pet, customer)
 
-    pet_in_stock = find_pet_by_name(petshop, pet[:name]) != nil ? true : false
-    has_the_cash = customer_can_afford_pet(customer, pet)
-
-   if  pet_in_stock && has_the_cash
+  if pet != nil && customer_can_afford_pet(customer, pet) == true
 
 #Changes to customer
      add_pet_to_customer(customer, pet)
@@ -78,17 +75,18 @@ def sell_pet_to_customer(petshop, pet, customer)
      increase_pets_sold(petshop, 1)
      add_or_remove_cash(petshop, pet[:price])
 
-
     return "Thank you for your custom, have a nice day!"
 
-  elsif !pet_in_stock
+
+  elsif pet == nil
      return "I'm sorry, we don't stock those"
 
-   elsif !has_the_cash
+  elsif customer_can_afford_pet(customer, pet) == false
      return "I'm sorry, you can't afford that"
 
-   else
-     return "You what?"
-   end
+  else
+
+    return "You what?"
+  end
 
 end
