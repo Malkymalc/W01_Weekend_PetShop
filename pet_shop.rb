@@ -57,3 +57,38 @@ end
 def add_pet_to_customer(customer, new_pet)
   customer[:pets] << new_pet
 end
+
+def customer_can_afford_pet(customer, new_pet)
+  return (customer[:cash] >= new_pet[:price])
+end
+
+
+def sell_pet_to_customer(petshop, pet, customer)
+
+    pet_in_stock = find_pet_by_name(petshop, pet[:name]) != nil ? true : false
+    has_the_cash = customer_can_afford_pet(customer, pet)
+
+   if  pet_in_stock && has_the_cash
+
+#Changes to customer
+     add_pet_to_customer(customer, pet)
+     customer[:cash] -= pet[:price]
+#Changes to shop
+     remove_pet_by_name(petshop, pet[:name])
+     increase_pets_sold(petshop, 1)
+     add_or_remove_cash(petshop, pet[:price])
+
+
+    return "Thank you for your custom, have a nice day!"
+
+  elsif !pet_in_stock
+     return "I'm sorry, we don't stock those"
+
+   elsif !has_the_cash
+     return "I'm sorry, you can't afford that"
+
+   else
+     return "You what?"
+   end
+
+end
