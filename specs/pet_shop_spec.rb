@@ -186,10 +186,10 @@ class TestPetShop < Minitest::Test
   end
 
 
-  # #These are 'integration' tests so we want multiple asserts.
-  # #If one fails the entire test should fail
+  #These are 'integration' tests so we want multiple asserts.
+  #If one fails the entire test should fail
 
-#18
+18
   def test_sell_pet_to_customer__pet_found
     customer = @customers[0]
     pet = find_pet_by_name(@pet_shop,"Arthur")

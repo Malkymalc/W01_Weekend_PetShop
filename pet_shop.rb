@@ -46,8 +46,8 @@ def remove_pet_by_name(shop, pet_name)
 end
 
 def add_pet_to_stock(shop, new_pet)
-  pets_array = shop[:pets]
-  pets_array.push(new_pet)
+  #pets_array = shop[:pets]
+  shop[:pets].push(new_pet)
 end
 
 def customer_pet_count(customer)
@@ -58,14 +58,14 @@ def add_pet_to_customer(customer, new_pet)
   customer[:pets] << new_pet
 end
 
-def customer_can_afford_pet(customer, new_pet)
-  return (customer[:cash] >= new_pet[:price])
+def customer_can_afford_pet(customer, pet)
+  return (customer[:cash] >= pet[:price])
 end
 
 
 def sell_pet_to_customer(petshop, pet, customer)
 
-  if pet != nil && customer_can_afford_pet(customer, pet) == true
+  if pet != nil && customer_can_afford_pet(customer, pet)
 
 #Changes to customer
      add_pet_to_customer(customer, pet)
